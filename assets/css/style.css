@@ -43,6 +43,8 @@ header .menu a.btn:hover {
     padding: 1.2rem;
     text-align: center;
     transition: trransform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
 }
 .shop .item:hover {
     transform: translateY(-5px);
@@ -66,9 +68,4 @@ button:hover {
 }
 section {
     padding: 4rem 0;
-}
-
-.shop {
-    margin-top: 2rem;
-    margin-bottom: 4rem;
 }
