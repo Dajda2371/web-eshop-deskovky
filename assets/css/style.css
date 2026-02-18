@@ -52,3 +52,12 @@ header .menu a.btn:hover {
     max-width: 100%;
     height: auto;
 }
+button {
+    background: #007c3e;
+    color: #fff;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
