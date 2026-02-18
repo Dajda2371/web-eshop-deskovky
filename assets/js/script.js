@@ -19,6 +19,8 @@ function pay() {
     for (let i = 0; i < cartItems.length; i++) {
         deleteFromCart(cartItems[i])
     }
+    input("Zadejte číslo karty: ")
+    alert("Zaplaceno")
 }
 
 function calculateCartPrice() {
