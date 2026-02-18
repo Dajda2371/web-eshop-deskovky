@@ -1,5 +1,4 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-import json
 
 class MyHandler(SimpleHTTPRequestHandler):
     def do_POST(self):
@@ -9,10 +8,12 @@ class MyHandler(SimpleHTTPRequestHandler):
         path = self.path.lstrip('/')
         if '..' in path: return
 
-        with open(path, 'w', encoding='utf-8') as f:
-            json.dump(json.loads(data), f, indent=4)
-            
-        self.send_response(200)
+        try:
+            with open(path, 'w', encoding='utf-8') as f:
+                f.write(data)
+            self.send_response(200)
+        except:
+            self.send_response(500)
         self.end_headers()
 
 if __name__ == '__main__':
