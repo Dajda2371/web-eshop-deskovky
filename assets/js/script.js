@@ -6,14 +6,19 @@ async function getCartItems() {
     return await getJson("data/cart.json")
 }
 
-async function getPrice(itemId) {
+async function getItem(itemId) { // ziskam celej obsah itemu podle ID
     let items = await getItems()
     for (let i = 0; i < items.length; i++) {
         if (items[i].id === itemId) {
-            return items[i].price
+            return items[i]
         }
     }
     return 0
+}
+
+async function getItemPrice(itemId) {
+    let item = await getItem(itemId)
+    return item.price
 }
 
 async function addToCart(itemId) {
@@ -42,12 +47,9 @@ async function calculateCartPrice() {
     let cartItems = await getCartItems()
     let totalPrice = 0
     for (let i = 0; i < cartItems.length; i++) {
-        let item = cartItems[i]
-        let itemPrice = await getPrice(item)
-
-        if (item) { // osetreni kdyby to naslo bordel tak to tu cenu nepricte, protoze jinak by se to vysralo
-            totalPrice += itemPrice
-        }
+        let itemId = cartItems[i]
+        let itemPrice = await getItemPrice(itemId)
+        totalPrice += itemPrice
     }
     return totalPrice
 }
