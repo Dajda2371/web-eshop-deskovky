@@ -67,17 +67,25 @@ async function login(username, password) {
     return false
 }
 
-async function getJson(filePath) {
-    const response = await fetch(filePath)
-    return await response.json()
+// Updated helpers to use localStorage for persistence instead of server POSTs
+async function getJson(key) {
+    // items.json is static, always fetch from server
+    if (key === "data/items.json") return await (await fetch(key)).json()
+
+    // For other data (cart, logins), check localStorage first
+    const stored = localStorage.getItem(key)
+    if (stored) return JSON.parse(stored)
+
+    // Fallback to initial file on server if local doesn't exist
+    try {
+        const response = await fetch(key)
+        if (response.ok) return await response.json()
+    } catch (e) {
+        console.warn("Fetch failed for " + key)
+    }
+    return []
 }
 
-async function saveJson(filePath, data) {
-    await fetch(filePath, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
+async function saveJson(key, data) {
+    localStorage.setItem(key, JSON.stringify(data))
 }
