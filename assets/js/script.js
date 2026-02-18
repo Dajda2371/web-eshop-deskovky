@@ -36,6 +36,12 @@ function calculateCartPrice() {
     return price
 }
 
+function signup(username, password) {
+    let logins = getJson("data/logins.json")
+    logins.push({ username, password })
+    saveJson("data/logins.json", logins)
+}
+
 function login(username, password) {
     let logins = getJson("data/logins.json")
     for (let i = 0; i < logins.length; i++) {
