@@ -1,70 +1,83 @@
-function getItems() {
-    return getJson("data/items.json")
+async function getItems() {
+    return await getJson("data/items.json")
 }
 
-function getCartItems() {
-    return getJson("data/cart.json")
+async function getCartItems() {
+    return await getJson("data/cart.json")
 }
 
-function addToCart(itemId) {
-    let cartItems = getCartItems()
+async function addToCart(itemId) {
+    let cartItems = await getCartItems()
     cartItems.push(itemId)
-    saveJson("data/cart.json", cartItems)
+    await saveJson("data/cart.json", cartItems)
 }
 
-function deleteFromCart(itemId) {
-    let cartItems = getCartItems()
+async function deleteFromCart(itemId) {
+    let cartItems = await getCartItems()
     cartItems = cartItems.filter(item => item !== itemId)
-    saveJson("data/cart.json", cartItems)
+    await saveJson("data/cart.json", cartItems)
 }
 
-function pay() {
-    let cartItems = getCartItems()
-    for (let i = 0; i < cartItems.length; i++) {
-        deleteFromCart(cartItems[i])
+async function pay() {
+    let cartItems = await getCartItems()
+    let cardNumber = prompt("Zadejte číslo karty: ")
+    if (cardNumber) {
+        await saveJson("data/cart.json", [])
+        alert("Zaplaceno")
     }
-    input("Zadejte číslo karty: ")
-    alert("Zaplaceno")
 }
 
-function calculateCartPrice() {
-    let cartItems = getCartItems()
+// Projde vsechny veci v kosiku a najde k nim cenu a secte vsechny ty ceny dohromady
+async function calculateCartPrice() {
+    let cartItems = await getCartItems()
+    let items = await getItems()
     let price = 0
     for (let i = 0; i < cartItems.length; i++) {
-        price += cartItems[i].price
+        let textId = cartItems[i]
+
+        let item = null
+        for (let j = 0; j < items.length; j++) {
+            if (items[j].id === textId) {
+                item = items[j]
+                break
+            }
+        }
+        if (item) { // osetreni kdyby to naslo bordel tak to tu cenu nepricte, protoze jinak by se to vysralo
+            price += item.price
+        }
     }
     return price
 }
 
-function signup(username, password) {
-    let logins = getJson("data/logins.json")
+async function signup(username, password) {
+    let logins = await getJson("data/logins.json")
     logins.push({ username, password })
-    saveJson("data/logins.json", logins)
+    await saveJson("data/logins.json", logins)
 }
 
-function login(username, password) {
-    let logins = getJson("data/logins.json")
+async function login(username, password) {
+    let logins = await getJson("data/logins.json")
     for (let i = 0; i < logins.length; i++) {
         if (logins[i].username === username && logins[i].password === password) {
             alert("Přihlášen")
             return true
         }
-        else {
-            alert("Špatné jméno nebo heslo")
-            return false
-        }
     }
+    alert("Špatné jméno nebo heslo")
     return false
 }
 
-function getJson(filePath) {
-    let file = fetch(filePath)
-    return file.json()
+async function getJson(filePath) {
+    const response = await fetch(filePath)
+    return await response.json()
 }
 
-function saveJson(filePath, data) {
-    let file = fetch(filePath, {
+async function saveJson(filePath, data) {
+    await fetch((window.location.href.includes("html") ? "" : "") + filePath, {
         method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(data)
     })
 }

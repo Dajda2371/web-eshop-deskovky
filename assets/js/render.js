@@ -1,6 +1,8 @@
 async function renderItems() {
     let items = await getItems()
     let shopElement = document.querySelector(".shop")
+    if (!shopElement) return // osetreni ze kdyby tam ta classa nebyla tak to prestane a nevysere se to
+
     shopElement.innerHTML = ""
     for (let i = 0; i < items.length; i++) {
         let item = items[i]
@@ -11,6 +13,8 @@ async function renderItems() {
             <p>${item.price},-</p>
             <button onclick="addToCart(${item.id})">DO KOŠÍKU</button>
         `
-        shopElement.appendChild(itemElement)
+        shopElement.appendChild(itemElement) // prida to do toho divu KAZDEJ ITEM
     }
 }
+
+document.addEventListener("DOMContentLoaded", renderItems) // ta funkce se bude volat az se to nacte
