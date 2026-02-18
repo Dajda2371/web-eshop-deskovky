@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head> <header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <script src="assets/js/script.js"></script>
+    </head>
+    <body>
+        <header>
             <h1>Přihlásit Se</h1>
         </header>
-<body>  <form action="login()">
-          <label for="username">Uživatelské Jméno:</label>
-          <input type="text" id="username" name="username"><br><br>
-          <label for="password">Heslo:</label>
-          <input type="text" id="password" name="password"><br><br>
-          <input type="submit" value="Potvrdit">
+        <form
+            onsubmit="event.preventDefault(); login(document.getElementById('username').value, document.getElementById('password').value)"> <!-- nebude se to pri odeslani zbytečně se to reloadovat -->
+            <label for="username">Uživatelské Jméno:</label>
+            <input type="text" id="username" name="username"><br><br>
+            <label for="password">Heslo:</label>
+            <input type="password" id="password" name="password"><br><br>
+            <input type="submit" value="Potvrdit">
         </form>
-    
-</body>
+    </body>
 </html>
