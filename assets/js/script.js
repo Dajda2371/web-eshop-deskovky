@@ -1,17 +1,21 @@
 function getItems() {
-
+    return getJson("data/items.json")
 }
 
 function getCartItems() {
-
+    return getJson("data/cart.json")
 }
 
 function addToCart(itemId) {
-
+    let cartItems = getCartItems()
+    cartItems.push(itemId)
+    saveJson("data/cart.json", cartItems)
 }
 
 function deleteFromCart(itemId) {
-
+    let cartItems = getCartItems()
+    cartItems = cartItems.filter(item => item !== itemId)
+    saveJson("data/cart.json", cartItems)
 }
 
 function pay() {
@@ -50,4 +54,11 @@ function login(username, password) {
 function getJson(filePath) {
     let file = fetch(filePath)
     return file.json()
+}
+
+function saveJson(filePath, data) {
+    let file = fetch(filePath, {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
 }
