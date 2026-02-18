@@ -19,13 +19,19 @@ async function renderItems() {
 }
 
 async function renderCart() {
-    let cartItems = await getCartItems()
+    let cartItemIds = await getCartItems()
+    let allItems = await getItems()
+
     let cartElement = document.querySelector(".cart")
     if (!cartElement) return // osetreni ze kdyby tam ta classa nebyla tak to prestane a nevysere se to
 
     cartElement.innerHTML = ""
-    for (let i = 0; i < cartItems.length; i++) {
-        let item = cartItems[i]
+    for (let i = 0; i < cartItemIds.length; i++) {
+        let itemId = cartItemIds[i]
+        let item = allItems.find(it => it.id === itemId)
+
+        if (!item) continue
+
         let itemElement = document.createElement("div")
         itemElement.classList.add("item")
         itemElement.innerHTML = `
