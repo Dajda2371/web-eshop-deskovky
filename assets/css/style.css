@@ -64,3 +64,11 @@ button {
 button:hover {
     background: #005829;
 }
+section {
+    padding: 4rem 0;
+}
+
+.shop {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
