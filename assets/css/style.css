@@ -29,7 +29,7 @@ header .menu a.btn:hover {
     color: #007c3e;
     letter-spacing: 0.5px;
 }
-.shop {
+.shop, .cart {
     display: grid;
      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 2rem;
@@ -37,7 +37,7 @@ header .menu a.btn:hover {
     max-width: 1200px;
     margin: 0 auto;
 }
-.shop .item {
+.shop .item, .cart .item {
     background: #fff;
     border: 1px solid #eee;
     padding: 1.2rem;
@@ -46,11 +46,11 @@ header .menu a.btn:hover {
     margin-top: 2rem;
     margin-bottom: 4rem;
 }
-.shop .item:hover {
+.shop .item:hover, .cart .item:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
-.shop .item img {
+.shop .item img, .cart .item img {
     max-width: 100%;
     height: auto;
 }
