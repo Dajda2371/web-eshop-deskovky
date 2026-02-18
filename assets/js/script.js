@@ -15,9 +15,17 @@ function deleteFromCart(itemId) {
 }
 
 function pay() {
-    cartItems = []
-    cartItems = getCartItems()
+    let cartItems = getCartItems()
     for (let i = 0; i < cartItems.length; i++) {
         deleteFromCart(cartItems[i])
     }
+}
+
+function calculateCartPrice() {
+    let cartItems = getCartItems()
+    let price = 0
+    for (let i = 0; i < cartItems.length; i++) {
+        price += cartItems[i].price
+    }
+    return price
 }
