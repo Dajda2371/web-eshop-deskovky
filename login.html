@@ -5,14 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="assets/css/style.css">
-        <script src="assets/js/script.js"></script>
+        <script src="assets/js/data.js"></script>
+        <script src="assets/js/auth.js"></script>
     </head>
     <body>
         <header>
             <h1>Přihlásit Se</h1>
         </header>
-        <form
-            onsubmit="event.preventDefault(); login(document.getElementById('username').value, document.getElementById('password').value)"> <!-- nebude se to pri odeslani zbytečně se to reloadovat -->
+        <form class="prihlaseni"
+            onsubmit="event.preventDefault(); login(document.getElementById('username').value, document.getElementById('password').value)">
+            <!-- nebude se to pri odeslani zbytečně se to reloadovat -->
             <label for="username">Uživatelské Jméno:</label>
             <input type="text" id="username" name="username"><br><br>
             <label for="password">Heslo:</label>
