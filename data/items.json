@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "Dostihy a Sázky",
+        "price": 499,
+        "img": "assets/img/dostihy-removebg-preview.png"
+    },
+    {
+        "id": 2,
+        "name": "Člověče napij se",
+        "price": 379,
+        "img": "assets/img/clovecenapijse-removebg-preview.png"
+    },
+    {
+        "id": 3,
+        "name": "Uno",
+        "price": 149,
+        "img": "assets/img/uno.webp"
+    },
+    {
+        "id": 4,
+        "name": "Šachy",
+        "price": 549,
+        "img": "assets/img/sachy.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Bang",
+        "price": 319,
+        "img": "assets/img/bang.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Výbušná Koťátka",
+        "price": 519,
+        "img": "assets/img/kotatka.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Monopoly",
+        "price": 749,
+        "img": "assets/img/monopoly.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Pokemon Karty",
+        "price": 139,
+        "img": "assets/img/pokemon.webp"
+    }
+]
