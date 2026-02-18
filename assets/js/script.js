@@ -73,7 +73,7 @@ async function getJson(filePath) {
 }
 
 async function saveJson(filePath, data) {
-    await fetch((window.location.href.includes("html") ? "" : "") + filePath, {
+    await fetch(filePath, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
