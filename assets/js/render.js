@@ -27,9 +27,9 @@ async function renderCart() {
     cartElement.innerHTML = ""
     for (let i = 0; i < cartItemIds.length; i++) {
         let itemId = cartItemIds[i]
-        let item = await getItem(itemId)
+        let item = await getItemById(itemId)
 
-        if (!item) continue
+        if (!item) continue // osetreni ze kdyby to item nedostalo tak to prestane a nebude to dinymicky generovat sracky
 
         let itemElement = document.createElement("div")
         itemElement.classList.add("item")
@@ -42,22 +42,8 @@ async function renderCart() {
         cartElement.appendChild(itemElement) // prida to do toho divu KAZDEJ ITEM
     }
 
-    // Update total price using calculateCartPrice from script.js
-    if (typeof calculateCartPrice === 'function') {
-        let price = await calculateCartPrice()
-        let totalPriceElement = document.getElementById("totalPrice") // Best practice if ID exists
-        if (!totalPriceElement) {
-            // Fallback for previous HTML structure if ID wasn't added yet (but in Step 293 user added id="totalPrice")
-            let headers = document.querySelectorAll("h3")
-            for (let h3 of headers) {
-                if (h3.innerText.includes(",-") || h3.innerText.match(/\d+/)) {
-                    totalPriceElement = h3
-                    break
-                }
-            }
-        }
-        if (totalPriceElement) totalPriceElement.innerText = price + ",-"
-    }
+    let price = await calculateCartPrice()
+    document.getElementById("totalPrice").innerText = price
 }
 
 // tohle se bude volat kdyz se ty stranky nactou

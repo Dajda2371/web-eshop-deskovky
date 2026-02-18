@@ -6,7 +6,7 @@ async function getCartItems() {
     return await getJson("data/cart.json")
 }
 
-async function getItem(itemId) { // ziskam celej obsah itemu podle ID
+async function getItemById(itemId) { // ziskam celej obsah itemu podle ID
     let items = await getItems()
     for (let i = 0; i < items.length; i++) {
         if (items[i].id === itemId) {
@@ -17,7 +17,7 @@ async function getItem(itemId) { // ziskam celej obsah itemu podle ID
 }
 
 async function getItemPrice(itemId) {
-    let item = await getItem(itemId)
+    let item = await getItemById(itemId)
     return item.price
 }
 
@@ -25,12 +25,14 @@ async function addToCart(itemId) {
     let cartItems = await getCartItems()
     cartItems.push(itemId)
     await saveJson("data/cart.json", cartItems)
+    renderCart()
 }
 
 async function deleteFromCart(itemId) {
     let cartItems = await getCartItems()
     cartItems = cartItems.filter(item => item !== itemId)
     await saveJson("data/cart.json", cartItems)
+    renderCart() // to tu musi bejt aby jsem to jak kkt nemuse manualne refreshovat
 }
 
 async function pay() {
@@ -39,6 +41,7 @@ async function pay() {
     if (cardNumber) {
         await saveJson("data/cart.json", [])
         alert("Zaplaceno")
+        renderCart()
     }
 }
 
