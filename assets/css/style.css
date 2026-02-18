@@ -37,3 +37,10 @@ header .menu a.btn:hover {
     max-width: 1200px;
     margin: 0 auto;
 }
+.shop .item {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 1.2rem;
+    text-align: center;
+    transition: trransform 0.3s ease, box-shadow 0.3s ease;
+}
