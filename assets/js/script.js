@@ -48,36 +48,3 @@ async function calculateCartPrice() {
     }
     return price
 }
-
-async function signup(username, password) {
-    let logins = await getJson("data/logins.json")
-    logins.push({ username, password })
-    await saveJson("data/logins.json", logins)
-}
-
-async function login(username, password) {
-    let logins = await getJson("data/logins.json")
-    for (let i = 0; i < logins.length; i++) {
-        if (logins[i].username === username && logins[i].password === password) {
-            alert("Přihlášen")
-            return true
-        }
-    }
-    alert("Špatné jméno nebo heslo")
-    return false
-}
-
-async function getJson(filePath) {
-    const response = await fetch(filePath)
-    return await response.json()
-}
-
-async function saveJson(filePath, data) {
-    await fetch(filePath, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-}
