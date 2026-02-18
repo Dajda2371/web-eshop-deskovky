@@ -38,4 +38,6 @@ async function renderCart() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", renderItems) // ta funkce se bude volat az se to nacte
+// tohle se bude volat kdyz se ty stranky nactou
+document.addEventListener("DOMContentLoaded", renderItems)
+document.addEventListener("DOMContentLoaded", renderCart)
