@@ -10,10 +10,31 @@ async function renderItems() {
         itemElement.classList.add("item")
         itemElement.innerHTML = `
             <img src="${item.img}" alt="${item.name}" class="items">
+            <h3>${item.name}</h3>
             <p>${item.price},-</p>
             <button onclick="addToCart(${item.id})">DO KOŠÍKU</button>
         `
         shopElement.appendChild(itemElement) // prida to do toho divu KAZDEJ ITEM
+    }
+}
+
+async function renderCart() {
+    let cartItems = await getCartItems()
+    let cartElement = document.querySelector(".cart")
+    if (!cartElement) return // osetreni ze kdyby tam ta classa nebyla tak to prestane a nevysere se to
+
+    cartElement.innerHTML = ""
+    for (let i = 0; i < cartItems.length; i++) {
+        let item = cartItems[i]
+        let itemElement = document.createElement("div")
+        itemElement.classList.add("item")
+        itemElement.innerHTML = `
+            <img src="${item.img}" alt="${item.name}" class="items">
+            <h3>${item.name}</h3>
+            <p>${item.price},-</p>
+            <button onclick="deleteFromCart(${item.id})">ODSTRANIT Z KOŠÍKU</button>
+        `
+        cartElement.appendChild(itemElement) // prida to do toho divu KAZDEJ ITEM
     }
 }
 
