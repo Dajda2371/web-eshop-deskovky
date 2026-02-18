@@ -2,7 +2,7 @@ async function signup(username, password) {
     let logins = await getJson("data/logins.json")
     logins.push({ username, password })
     await saveJson("data/logins.json", logins)
-    window.location.href = "ucet.html"
+    login(username, password)
 }
 
 async function login(username, password) {
