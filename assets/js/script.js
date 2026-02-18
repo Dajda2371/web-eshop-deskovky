@@ -19,6 +19,8 @@ function pay() {
     for (let i = 0; i < cartItems.length; i++) {
         deleteFromCart(cartItems[i])
     }
+    input("Zadejte číslo karty: ")
+    alert("Zaplaceno")
 }
 
 function calculateCartPrice() {
@@ -28,4 +30,24 @@ function calculateCartPrice() {
         price += cartItems[i].price
     }
     return price
+}
+
+function login(username, password) {
+    let logins = getJson("data/logins.json")
+    for (let i = 0; i < logins.length; i++) {
+        if (logins[i].username === username && logins[i].password === password) {
+            alert("Přihlášen")
+            return true
+        }
+        else {
+            alert("Špatné jméno nebo heslo")
+            return false
+        }
+    }
+    return false
+}
+
+function getJson(filePath) {
+    let file = fetch(filePath)
+    return file.json()
 }
