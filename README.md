@@ -1,0 +1,1 @@
+Zapinat pomoci webserver.py a otevrit si na localhost:8000
