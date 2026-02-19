@@ -38,10 +38,12 @@ async function deleteFromCart(itemId) {
 async function pay() {
     let cartItems = await getCartItems()
     let cardNumber = prompt("Zadejte číslo karty: ")
-    if (cardNumber) {
+    if (typeof(cardNumber) === "number") {
         await saveJson("data/cart.json", [])
         alert("Zaplaceno")
         renderCart()
+    } else {
+        alert("Neplatné číslo karty")
     }
 }
 
