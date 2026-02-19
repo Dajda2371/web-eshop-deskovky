@@ -1,0 +1,4 @@
+data/*
+!data/
+!data/items.json
+__pycache__/
