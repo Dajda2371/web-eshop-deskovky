@@ -31,6 +31,7 @@ header .menu a.btn:hover {
 }
 .shop, .cart {
     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 2rem;
     padding: 2rem;
     max-width: 1200px;
