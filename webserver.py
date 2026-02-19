@@ -42,4 +42,10 @@ def initialize_files():
 if __name__ == '__main__':
     initialize_files()
     print("Serving on port 8000...")
-    HTTPServer(('', 8000), MyHandler).serve_forever()
+    try:
+        HTTPServer(('', 8000), MyHandler).serve_forever()
+    except KeyboardInterrupt:
+        print("Stopping server...")
+    finally:
+        print("Server stopped.")
+        exit(0)
