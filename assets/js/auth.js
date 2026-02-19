@@ -30,7 +30,7 @@ function logout() {
 
 function getCookie(name) { // najde cookie podle jmena a vrati jeji value (browser magie)
     let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    if (match) return match[2];
+    if (match) return match[2]; // to co chchi je treti v poradi
     return null;
 }
 
