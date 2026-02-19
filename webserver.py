@@ -1,3 +1,4 @@
+import os
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 class MyHandler(SimpleHTTPRequestHandler):
@@ -23,6 +24,22 @@ class MyHandler(SimpleHTTPRequestHandler):
         
         self.end_headers()
 
+def initialize_files():
+    if not os.path.exists('data'):
+        os.makedirs('data')
+    
+    files = {
+        'data/cart.json': '[]',
+        'data/logins.json': '[]'
+    }
+
+    for path, content in files.items():
+        if not os.path.exists(path):
+            with open(path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            print(f"Created {path}")
+
 if __name__ == '__main__':
+    initialize_files()
     print("Serving on port 8000...")
     HTTPServer(('', 8000), MyHandler).serve_forever()
