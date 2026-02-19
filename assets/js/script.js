@@ -38,7 +38,7 @@ async function deleteFromCart(itemId) {
 async function pay() {
     let cartItems = await getCartItems()
     let cardNumber = Number(prompt("Zadejte číslo karty: "))
-    if (!isNaN(cardNumber)) {
+    if (cardNumber && !isNaN(cardNumber)) {
         await saveJson("data/cart.json", [])
         alert("Zaplaceno")
         renderCart()
